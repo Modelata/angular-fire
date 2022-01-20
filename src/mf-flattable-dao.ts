@@ -1,5 +1,5 @@
-import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFirestore, DocumentReference } from '@angular/fire/compat/firestore';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import {
   concatMustachePaths,
   getLocation,

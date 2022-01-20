@@ -1,4 +1,4 @@
-import { DocumentReference, DocumentSnapshot } from '@angular/fire/firestore';
+import { DocumentReference, DocumentSnapshot } from '@angular/fire/compat/firestore';
 import { FormGroup, ValidatorFn, Validators, AbstractControlOptions } from '@angular/forms';
 import {
   createHiddenProperty,

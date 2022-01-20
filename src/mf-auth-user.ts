@@ -1,7 +1,6 @@
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { IMFLocation, IMFUpdateOptions } from '@modelata/fire/lib/angular';
-import { User as FirebaseUser } from 'firebase/app';
 import 'reflect-metadata';
 import { Observable, of } from 'rxjs';
 import { map, shareReplay, switchMap } from 'rxjs/operators';
@@ -9,6 +8,7 @@ import { MFRegisterOptions } from './interfaces/register-options.interface';
 import { MFDao } from './mf-dao';
 import { MFFlattableDao } from './mf-flattable-dao';
 import { MFModel } from './mf-model';
+import firebase from 'firebase/compat/app';
 
 /**
  * Errors that can occur during logging-in
@@ -52,7 +52,7 @@ export abstract class MFBasicAuthUser<M extends MFModel<M>> {
   /**
    * Get an observable of auth user
    */
-  public getAuthUser(): Observable<FirebaseUser> {
+  public getAuthUser(): Observable<firebase.User> {
     return this.authUser$;
   }
 
