@@ -428,6 +428,7 @@ export abstract class MFDao<M extends MFModel<M>> implements IMFDao<M> {
     let deleteFilesPromise: Promise<M>;
 
     if (this.getFileProperties().length) {
+      // eslint-disable-next-line no-prototype-builtins
       deleteFilesPromise = (idLocationOrModel.hasOwnProperty('_collectionPath') // is model ? ok : get model
         ? Promise.resolve(idLocationOrModel as M)
         : this.get(realLocation as IMFLocation, {
@@ -581,8 +582,7 @@ export abstract class MFDao<M extends MFModel<M>> implements IMFDao<M> {
   ): Promise<IMFFile> {
     if (fileObject && fileObject._file) {
       if (this.storage) {
-        const filePath = `${getPath(this.mustachePath, location)}/${fileObject._file.name
-          }`;
+        const filePath = `${getPath(this.mustachePath, location)}/${fileObject._file.name}`;
         MFLogger.debug(`[mf-dao#saveFile] uploading file ${filePath}`);
         return this.storage
           .upload(filePath, fileObject._file)

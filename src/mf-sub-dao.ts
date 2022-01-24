@@ -1,3 +1,5 @@
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable @typescript-eslint/ban-types */
 import { MFModel } from './mf-model';
 
 import { AngularFirestore } from '@angular/fire/compat/firestore';
