@@ -37,7 +37,7 @@
     "firebase": "^9.6.3"
   },
   "scripts": {
-    "prebuild": "cti create ./src && echo \"export * from '@modelata/fire/lib/angular';\" >> ./src/index.ts",
+    "prebuild": "cti create ./src && echo export * from '@modelata/fire/lib/angular'; >> ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "prepublishOnly": "npm run build",
