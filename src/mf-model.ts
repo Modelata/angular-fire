@@ -1,6 +1,8 @@
-import { DocumentReference, DocumentSnapshot } from '@angular/fire/firestore';
+/* eslint-disable no-prototype-builtins */
+import { DocumentReference, DocumentSnapshot } from '@angular/fire/compat/firestore';
 import { FormGroup, ValidatorFn, Validators, AbstractControlOptions } from '@angular/forms';
-import { createHiddenProperty,
+import {
+  createHiddenProperty,
   isHiddenProperty,
   isDocumentReference,
   isDaoObject,
@@ -26,6 +28,9 @@ export abstract class MFModel<M> implements IMFModel<M> {
    */
   @Enumerable(false)
   public _id: string = null;
+
+  @Enumerable(false)
+    _snapshot: DocumentSnapshot<M> = null;
 
   /**
    * @inheritdoc

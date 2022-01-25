@@ -1,6 +1,6 @@
 # modelata angular fire
 
-modelata-angular-fire is a wrapper of @angular/fire with firestore for angular application  
+modelata-angular-fire is a wrapper of @angular/fire with firestore for angular application
 modelata-angular-fire implement and extend modelata-fire
 
 modelata-angular-fire gives abstract class and abstract dao to be extend.
@@ -8,6 +8,12 @@ modelata-angular-fire gives abstract class and abstract dao to be extend.
 [consult doc](https://moventes.github.io/modelata-angular-fire/globals.html)
 
 [get the demo app](https://gitlab.com/modelata/test-angular-fire)
+
+## Compatibility
+
+| Angular | Firebase | AngularFire  | @modelata/fire | @modelata/angular-fire |
+| --------|----------|--------------|----------------|------------------------|
+| 13      | 9.6      | ^7.2         | ^4.0.0         | ^7.2.0                 |
 
 ## Summary
 
@@ -70,7 +76,7 @@ export class UserModel extends MFModel<UserModel> {
 
 its possible to add attributes in the model
 
-attributes prefixed with \_ will not be saved in database  
+attributes prefixed with \_ will not be saved in database
 attributes that are observables must be suffixed by \$
 
 ```ts
@@ -120,7 +126,7 @@ Decorator to use on a model property. Its value will then be an observable of th
 
 /!\ to use this Decorator, you must inject the dao as a dependency in your model's constructor. /!\
 
-/!\ keep in mind that dependency injection is one way only and avoid injecting parents'dao in children models /!\ 
+/!\ keep in mind that dependency injection is one way only and avoid injecting parents'dao in children models /!\
 
 ```ts
 export class UserModel extends MFModel<UserModel> {
@@ -179,7 +185,7 @@ export class UserModel extends MFModel<UserModel> {
 }
 ```
 
-For GetByRef AND SubCollectionGetList.  
+For GetByRef AND SubCollectionGetList.
 add MyRefDAOService via getNewModel method of UserDaoService
 
 ```ts
@@ -233,7 +239,7 @@ export class UserModel extends MFModel<UserModel> {
 @StorageProperty(options: IMFStorageOptions)
 ```
 
-Decorates a property that is a file to save in firebase Storage.  
+Decorates a property that is a file to save in firebase Storage.
 The property must be of type : IMFFile.
 
 ```ts
@@ -367,12 +373,12 @@ export class UserDaoService extends MFDao<UserModel> {
 
 #### getNewModel
 
-getNewModel methode is used by MFDao, MFFlattableDao and by your components/service for instanciate a new model.  
+getNewModel methode is used by MFDao, MFFlattableDao and by your components/service for instanciate a new model.
 If you want to add data calculated from existing data (or any data that is not in database) to your models, this is the method to do it.
 
 #### beforeSave
 
-beforeSave methode is called by MFDao or MFFlattableDao on all model just before saving it to the database.  
+beforeSave methode is called by MFDao or MFFlattableDao on all model just before saving it to the database.
 If you want delete field or add calculated data, this is the method to do it.
 
 ```ts
@@ -391,8 +397,8 @@ If you want delete field or add calculated data, this is the method to do it.
 @CollectionPath('/users')
 ```
 
-CollectionPath decorator must be used on all DAO.  
-CollectionPath take in parameter a string representing the collection path in firestore db.  
+CollectionPath decorator must be used on all DAO.
+CollectionPath take in parameter a string representing the collection path in firestore db.
 If the collection is a subcollection (collection in a document), use the "mustache" syntaxe for all document id.
 
 ```ts
@@ -416,11 +422,11 @@ const location = {
 ```
 
 DeletionMode decorator is used for set the deletion strategy for this DAO. (default : HARD)
-DeletionMode take in parameter a enum value MFDeleteMode.SOFT or MFDeleteMode.HARD.  
+DeletionMode take in parameter a enum value MFDeleteMode.SOFT or MFDeleteMode.HARD.
 MFDeleteMode.SOFT :
 
 - when a dao delete a document (with delete methode), the document is just updated with delete = true;
-- all getList calls have a "where filter" on deleted field  
+- all getList calls have a "where filter" on deleted field
   MFDeleteMode.HARD :
 - when a dao delete a document (with delete methode), the document is definitely deleted.
 
@@ -689,7 +695,7 @@ export class UserDaoService extends MFDao<UserModel>
 
 #### Cacheable
 
-method decorator  
+method decorator
 Tells the Dao to cache request results
 
 ```ts
