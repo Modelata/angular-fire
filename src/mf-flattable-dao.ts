@@ -1,5 +1,5 @@
-import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFirestore, DocumentReference } from '@angular/fire/compat/firestore';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import {
   concatMustachePaths,
   getLocation,
@@ -228,6 +228,7 @@ export abstract class MFFlattableDao<M extends MFModel<M>> extends MFDao<M>{
       (myData, key) => {
         if (
           !Reflect.hasMetadata('subDocPath', refModel, key) &&
+          // eslint-disable-next-line no-prototype-builtins
           data.hasOwnProperty(key)
         ) {
           (myData as any)[key] = (data as any)[key];

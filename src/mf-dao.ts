@@ -5,8 +5,8 @@ import {
   CollectionReference,
   DocumentReference,
   DocumentSnapshot,
-} from '@angular/fire/firestore';
-import { AngularFireStorage } from '@angular/fire/storage';
+} from '@angular/fire/compat/firestore';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import {
   MFLogger,
   allDataExistInModel,
@@ -35,7 +35,7 @@ import {
   MFDeleteMode,
   createHiddenProperty,
 } from '@modelata/fire/lib/angular';
-import { firestore } from 'firebase/app';
+import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
 import 'reflect-metadata';
 import { combineLatest, Observable, of } from 'rxjs';
@@ -260,10 +260,10 @@ export abstract class MFDao<M extends MFModel<M>> implements IMFDao<M> {
       if (realLocation && realLocation.id && !options.overwrite) {
         testIfdocAlreadyExist = (this.getAFReference<Partial<M>>(
           realLocation,
-        ).get() as Observable<firestore.DocumentSnapshot>)
+        ).get() as Observable<firebase.firestore.DocumentSnapshot>)
           .pipe(take(1))
           .toPromise()
-          .then((snap: firestore.DocumentSnapshot) => {
+          .then((snap: firebase.firestore.DocumentSnapshot) => {
             if (snap.exists) {
               return Promise.reject({
                 message: `conflict ! document ${snap.id} already exists`,
@@ -428,6 +428,7 @@ export abstract class MFDao<M extends MFModel<M>> implements IMFDao<M> {
     let deleteFilesPromise: Promise<M>;
 
     if (this.getFileProperties().length) {
+      // eslint-disable-next-line no-prototype-builtins
       deleteFilesPromise = (idLocationOrModel.hasOwnProperty('_collectionPath') // is model ? ok : get model
         ? Promise.resolve(idLocationOrModel as M)
         : this.get(realLocation as IMFLocation, {
@@ -487,7 +488,7 @@ export abstract class MFDao<M extends MFModel<M>> implements IMFDao<M> {
    * @param options get one options
    */
   public getModelFromSnapshot(
-    snapshot: firestore.DocumentSnapshot,
+    snapshot: firebase.firestore.DocumentSnapshot,
     options: Partial<IMFGetOneOptions> = {},
   ): M {
     if (snapshot && snapshot.exists) {
@@ -581,8 +582,7 @@ export abstract class MFDao<M extends MFModel<M>> implements IMFDao<M> {
   ): Promise<IMFFile> {
     if (fileObject && fileObject._file) {
       if (this.storage) {
-        const filePath = `${getPath(this.mustachePath, location)}/${fileObject._file.name
-          }`;
+        const filePath = `${getPath(this.mustachePath, location)}/${fileObject._file.name}`;
         MFLogger.debug(`[mf-dao#saveFile] uploading file ${filePath}`);
         return this.storage
           .upload(filePath, fileObject._file)
