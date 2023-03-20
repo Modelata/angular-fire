@@ -13,6 +13,7 @@ modelata-angular-fire gives abstract class and abstract dao to be extend.
 
 | Angular | Firebase | AngularFire  | @modelata/fire | @modelata/angular-fire |
 | --------|----------|--------------|----------------|------------------------|
+| 15      | 9.18      | ^7.5         | ^5.0.0         | ^8.0.0                 |
 | 13      | 9.6      | ^7.2         | ^4.0.0         | ^7.2.0                 |
 
 ## Summary
