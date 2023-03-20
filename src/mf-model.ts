@@ -128,7 +128,7 @@ export abstract class MFModel<M> implements IMFModel<M> {
         const hiddenProperty = isHiddenProperty(key);
 
         if (Reflect.hasMetadata('observableFromSubCollection', this, key)) {
-          const meta: IMFMetaSubCollection = Reflect.getMetadata('observableFromSubCollection', this, key);
+          const meta: IMFMetaSubCollection<M> = Reflect.getMetadata('observableFromSubCollection', this, key);
           if (meta.collectionName && meta.daoName && this._id && (this as any)[meta.daoName]) {
             const dao: MFDao<any> = (this as any)[meta.daoName];
             const collectionPath = `${this._collectionPath}/${this._id}/${meta.collectionName}`;
@@ -235,7 +235,7 @@ export abstract class MFModel<M> implements IMFModel<M> {
           !(controlConfig.toFormGroupFunction)
         ) {
           MFLogger.error(
-            `speacial data given to a ${controlName} field that is not in formGroup or without toFormGroupFunction`,
+            `speacial data given to a ${controlName as string} field that is not in formGroup or without toFormGroupFunction`,
             dataForToFormGroupFunctions[controlName]
           );
         }
