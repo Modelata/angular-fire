@@ -1,6 +1,6 @@
 {
   "name": "@modelata/angular-fire",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "description": "@modelata/fire implementation for angular 15",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -40,7 +40,7 @@
     "rxjs": "^7.8.0"
   },
   "scripts": {
-    "prebuild": "cti create ./src && echo export * from '@modelata/fire/lib/angular'; >> ./src/index.ts",
+    "prebuild": "cti create ./src && echo \"export * from '@modelata/fire/lib/angular';\" >> ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "lint": "npx eslint src/**/*.ts",
